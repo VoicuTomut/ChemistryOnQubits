@@ -8,7 +8,7 @@ These Github Repository is an addition to  https://www.notion.so/Chemistry-on-Qu
 ### Notes chart..
 Knowledge marks the treasure  !
 <ul>
-<li>Road: A quick walk through math to better understand Molecular Hamiltonian.<\li>
-<li>Forest : A view from the sky on the concepts encountered.(VQE, Hartree-Fock, etc.)<\li>
-<li>Hello... : An introduction to something better follow the original tutorial. (Github)<\li>
+<li>Road: A quick walk through math to better understand Molecular Hamiltonian.</li>
+<li>Forest : A view from the sky on the concepts encountered.(VQE, Hartree-Fock, etc.)</li>
+<li>Hello... : An introduction to something better follow the original tutorial. (Github)</li>
 </ul>
