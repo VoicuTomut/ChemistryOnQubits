@@ -51,13 +51,16 @@ def proces_counts( counts,z_index):
 def expect_z(counts,shots,z_index=[]):
     
     if len(z_index)==0:
-        z_counts=counts
+        #print("Zeroo")
+        return 1
+       
     else:
         z_counts=proces_counts(counts,z_index)
-    print(z_counts)
+    #print(z_counts)
     expectation=0
     for key in z_counts:
         sign=-1
+        #print(key)
         if key.count('1')%2==0:
             sign=1
         expectation= expectation+sign*z_counts[key]/shots
@@ -69,7 +72,7 @@ def measure_qc(qc,Obs):
     m_qc.barrier()
     for i in range(len(Obs)):
         if(Obs[i]=='Z')or(Obs[i]=='I'):
-           m_qc.measure(i,i)
+            m_qc.measure(i,i)
         if(Obs[i]=='X'):
             m_qc.h(i)
             m_qc.measure(i,i)
@@ -82,7 +85,7 @@ def measure_qc(qc,Obs):
 def expected(qc,Obs,shots,backend=Aer.get_backend('qasm_simulator')):
     mc=measure_qc(qc,Obs)
     counts=execute(mc,backend=backend,shots=shots).result().get_counts(mc)
-    print(counts)
+    #print(counts)
     z_index=[]
     for i in range (len(Obs)):
         if(Obs[i]!='I'):
