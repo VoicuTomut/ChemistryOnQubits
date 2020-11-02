@@ -12,7 +12,7 @@ Knowledge marks the treasure  !
   <li>💥 Matchgate: An attempt to understand the math behind Matchgates so I can use them further.</li>
   <li>🧱Basis sets: Before moving on to the code we have to calculate the integrals. I need to understand the orbitals better.</li>
   <li>📰Articles: Interesting papers related to VQE, quantum chemistry but also quantum computing in pharma.</li>
-  <li>🥄Resources: Useful Links.</li>
+  <li>💻Resources: Useful Links.</li>
   <li>🌲Forest : A view from the sky on the concepts encountered.(VQE, Hartree-Fock, etc.)</li>
   <li>🐙 (Github) Hello... : An introduction to something better follow the original tutorial .</li>
   <li>🐙 (Github) Playground\...MudGround.ipynnb: Dirty but useful code to explore and understand notions.</li>
