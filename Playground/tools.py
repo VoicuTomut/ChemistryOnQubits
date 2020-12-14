@@ -189,3 +189,74 @@ def new_state(dens):
 #############################################################################################################################
 
 #############################################################################################################################
+#Inefficient matchgate VQE
+
+#Exact solver for reference:
+def Exact_solver(qubitOp):
+    ex = NumPyEigensolver(qubitOp)
+    result = ex.run()
+    ref = result['eigenvalues']
+    return np.real(ref)[0]
+
+class swap_t:
+    def __init__(self,theata):
+        self.theta=theata
+        self.mat=np.array([[1,0,0,0],
+                           [0,np.sin(self.theta),np.cos(self.theta),0],
+                           [0,np.cos(self.theta),-1*np.sin(self.theta),0],
+                           [0,0,0,-1]])
+def U_t(theta):
+    qc=QuantumCircuit(2,name='U_t('+str(theta)+')')
+    qc.unitary(swap_t(theta).mat,[0,1])
+    return qc.to_gate()
+
+def ansatz_cell(qc,qo,nr_o, nr_e,thetas):
+    
+    #qo=QuantumRegister(nr_o,'qo')
+    #qc=QuantumCircuit(qo,name='ansatz_cell')
+    
+    it=iter(thetas)
+    start=nr_e-1
+    limit=nr_o
+    while start!=-1:
+        cq=start
+        tq=start+1
+        while tq<limit:
+            qc.append(U_t(next(it)),[cq,tq])
+            cq=cq+1
+            tq=tq+1
+
+        start=start-1
+        limit=limit-1
+    return qc 
+
+def var_circ(nr_o,nr_e,theta):
+    qo=QuantumRegister(nr_o,'qo')
+    cb=ClassicalRegister(nr_o,'cl')
+    circ = QuantumCircuit(qo,cb)
+    for i in range(nr_e):
+        circ.x(i)
+    ansatz_cell(circ,qo,nr_o, nr_e,theta)
+    return circ
+
+# Caluclate final expected value as sum of h[i]<psi|h_obs|psi> where h_obs-> h_label[i].
+
+def value(h,h_label,circ,backend):
+    
+    val=0
+    for i in range(len(h)):
+        if h[i]!=0:
+            exp=expected(circ,h_label[i],shots=100000,backend=backend)
+            val=val+h[i]*exp
+            #print('exp for {} ={}'.format(h_label[i],exp))
+            
+    return (val)
+
+
+def cost(theta,weight,pauli,nr_o,nr_e,backend):
+    circ=var_circ(nr_o,nr_e,theta)
+    return value(weight,pauli,circ,backend)
+#############################################################################################################################
+
+#############################################################################################################################
+
