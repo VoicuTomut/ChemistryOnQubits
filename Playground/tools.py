@@ -5,6 +5,8 @@ import itertools
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister 
 from qiskit import Aer, execute
 from qiskit.quantum_info.operators import Operator
+
+from qiskit.aqua.algorithms import NumPyEigensolver
 ###########################################################################################################################
 #Match gate tools:
 
