@@ -156,8 +156,8 @@ def get_x(nrq):
             x2=np.kron(Z,x2)
             x21=np.kron(Z,x21)
         for k in range(i+1,nrq):
-            x2=np.kron(Z,x2)
-            x21=np.kron(Z,x21)
+            x2=np.kron(x2,I)
+            x21=np.kron(x21,I)
         x.append(x2)
         x.append(x21)
     return x
@@ -166,9 +166,9 @@ def comutation(mat1,mat2):
     return np.matmul(mat1,mat2)-np.matmul(mat2,mat1)
 
 
-def corelation(dens):
+def corelation(dens,op):
     nrq=int(np.log2(len(dens)))
-    x=get_x(nrq)
+    x=op.elements
     #print(x)
     C=[]
     for  i in range(2*nrq):
@@ -179,10 +179,10 @@ def corelation(dens):
     return C
 
 #Creat density matrix for the compress state  from initial density 
-def new_state(dens):
+def new_state(dens,op):
     nrq=int(np.log2(len(dens)))
     ide=np.identity(2*nrq,dtype=np.complex128)
-    C=corelation(dens)
+    C=corelation(dens,op)
     for i in range(len(C)):
         for j in range(len(C)):
             C[i][j]=1j*(C[i][j])
