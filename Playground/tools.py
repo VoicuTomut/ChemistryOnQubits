@@ -174,7 +174,7 @@ def corelation(dens,op):
     for  i in range(2*nrq):
         li=[]
         for j in range(2*nrq):
-            li.append(np.matmul(comutation(x[i],x[j]),dens).trace())
+            li.append((1.0j/2)*np.matmul(comutation(x[i],x[j]),dens).trace())
         C.append(li)
     return C
 
@@ -186,7 +186,7 @@ def new_state(dens,op):
     for i in range(len(C)):
         for j in range(len(C)):
             C[i][j]=1j*(C[i][j])
-    return (1/(2*nrq))*(ide-C)
+    return (1/(2*nrq))*(ide+C)
 
 #############################################################################################################################
 
