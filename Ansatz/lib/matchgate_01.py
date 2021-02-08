@@ -52,7 +52,7 @@ class swap_t:
     [0,0,0,-1]]
 '''
 def U_t(theta):
-    qc=QuantumCircuit(2,name='U_t('+str(theta)+')')
+    qc=QuantumCircuit(2,name='G_t('+str(theta)+')')
     qc.unitary(swap_t(theta).mat,[0,1])
     return qc.to_gate()
 
