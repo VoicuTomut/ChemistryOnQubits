@@ -31,6 +31,15 @@ def Match_gate_test(matrice):
 
 ############################################################################################################################
 #Expected value
+# Pauli matrix
+I=np.array([[1,0],[0,1]],dtype=np.complex128)
+X=np.array([[0,1],[1,0]],dtype=np.complex128)
+Y=np.array([[0,-1.0j],[1.0j,0]],dtype=np.complex128)
+Z=np.array([[1,0],[0,-1]],dtype=np.complex128)
+
+pauli=[I,X,Y,Z]
+labels=['I','X','Y','Z']
+indice=[0,1,2,3]
 
 # Set signature:
 # Z=|0><0|-|1><1|; ZZ=|00><00|-|01><01|-|10><10|+|11><11|   ZI=|00><00|+|01><01|-|10><10|-|11><11| IZ=|00><00|-|01><01|+|10><10|-|11><11|
